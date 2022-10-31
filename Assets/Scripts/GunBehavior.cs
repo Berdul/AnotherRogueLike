@@ -7,27 +7,26 @@ public class GunBehavior : MonoBehaviour
     public GameObject bulletPrefab;
     public float bulletSpeed;
 
-    private Vector3 mousePos;
-    private Vector3 pointingDirection;
-    private Vector3 fireBulletPosition;
+    private Vector2 mousePos;
+    private Vector2 pointingDirection;
 
     private float angle;
 
     // Start is called before the first frame update
     void Start()
-    {
-
+    {;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Use Vector2 to make normalized calculus correct, else Z axis makes calculus wrong
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        fireBulletPosition = transform.GetChild(0).position;
+        Vector2 position2D = new Vector2(transform.position.x, transform.position.y);
 
         // Make gun face the mouse
-        pointingDirection = mousePos - transform.position;
-        angle = Mathf.Atan2(pointingDirection.y, pointingDirection.x) * Mathf.Rad2Deg;
+        pointingDirection = (mousePos - position2D).normalized;
+        angle = Mathf.RoundToInt(Mathf.Atan2(pointingDirection.y, pointingDirection.x) * Mathf.Rad2Deg);
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
@@ -38,8 +37,9 @@ public class GunBehavior : MonoBehaviour
         Gizmos.DrawLine(transform.position, mousePos);
     }
 
-    public void Fire() {
-        GameObject bullet = Instantiate(bulletPrefab, fireBulletPosition, Quaternion.AngleAxis(angle, Vector3.forward));
-        bullet.GetComponent<Rigidbody2D>().velocity = (mousePos - transform.position).normalized * bulletSpeed;
+    public void Fire()
+    {
+        Vector2 bulletSpawnPos = transform.GetChild(0).position;
+        bulletPrefab.GetComponent<IBullet>().Fire(pointingDirection, bulletSpawnPos, angle);
     } 
 }

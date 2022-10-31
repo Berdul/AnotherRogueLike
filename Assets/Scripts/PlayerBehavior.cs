@@ -14,6 +14,7 @@ public class PlayerBehavior : MonoBehaviour
     private bool dashing = false;
 
     private GunBehavior gunBehavior;
+    private Animator animator;
 
     public PlayerActionInputs playerControls;
     private InputAction move;
@@ -26,6 +27,7 @@ public class PlayerBehavior : MonoBehaviour
 
     void OnEnable() {
         gunBehavior = gameObject.transform.Find("Gun").GetComponent<GunBehavior>();
+        animator = gameObject.GetComponent<Animator>();
 
         InitInputActions();
     }
@@ -51,6 +53,7 @@ public class PlayerBehavior : MonoBehaviour
 
     void FixedUpdate() {
         rb.velocity = moveDir * moveSpeed;
+        animator.SetFloat("speed", moveDir.magnitude);
     }
 
     void OnCollisionEnter(Collision collision) {

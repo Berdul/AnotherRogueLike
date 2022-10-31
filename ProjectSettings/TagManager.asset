@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Gun
   - Bullet
+  - Mob
+  - Wall
   layers:
   - Default
   - TransparentFX
