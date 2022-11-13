@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LittleBulletBehavior : MonoBehaviour, IBullet
+public class LittleBulletBehavior : Bullet
 {
 
     public GameObject bulletPrefab;
@@ -24,13 +24,14 @@ public class LittleBulletBehavior : MonoBehaviour, IBullet
         Destroy(gameObject);
     }
 
-    public void Fire(Vector2 pointingDirection, Vector2 bulletSpawn, float angle) {
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawn, Quaternion.AngleAxis(angle, Vector3.forward));
-        bullet.GetComponent<Rigidbody2D>().velocity = pointingDirection * bulletSpeed;
-
+    public override GameObject GetBulletPrefab()
+    {
+        return bulletPrefab;
     }
 
-    public GameObject GetBulletPrefab() {
-        return bulletPrefab;
+    public override void Fire(Vector2 pointingDirection, Vector2 bulletSpawn, float angle)
+    {
+        GameObject bullet = Instantiate(bulletPrefab, bulletSpawn, Quaternion.AngleAxis(angle, Vector3.forward));
+        bullet.GetComponent<Rigidbody2D>().velocity = pointingDirection * bulletSpeed;
     }
 }

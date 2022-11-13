@@ -19,7 +19,7 @@ public class LevelManager : MonoBehaviour
 
     void Update() {        
         if (Input.GetMouseButton(1)) {
-            LoadNextLevel(buildIndex == 0 ? buildIndex + 1 : 0);
+            LoadNextLevel(buildIndex < 2 ? buildIndex + 1 : 0);
             buildIndex = SceneManager.GetActiveScene().buildIndex;
         }
 

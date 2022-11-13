@@ -56,7 +56,7 @@ public class PlayerBehavior : MonoBehaviour
         animator.SetFloat("speed", moveDir.magnitude);
     }
 
-    void OnCollisionEnter(Collision collision) {
+    void OnCollisionEnter2D(Collision2D collision) {
         Debug.Log("PLAYER OnCollisionEnter");
     }
 
@@ -79,7 +79,7 @@ public class PlayerBehavior : MonoBehaviour
     }
 
     void Fire(InputAction.CallbackContext context) {
-        gunBehavior.Fire();
+        //gunBehavior.Fire();
     }
 
     void InitInputActions() {

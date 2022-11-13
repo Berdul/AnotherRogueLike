@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArrowBehavior : MonoBehaviour, IBullet
+public class ArrowBehavior : Bullet
 {
     public GameObject bulletPrefab;
     public float bulletSpeed;
@@ -30,13 +30,14 @@ public class ArrowBehavior : MonoBehaviour, IBullet
         }
     }
 
-    public void Fire(Vector2 pointingDirection, Vector2 bulletSpawn, float angle) {
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawn, Quaternion.AngleAxis(angle - 45, Vector3.forward));
-        bullet.GetComponent<Rigidbody2D>().velocity = pointingDirection * bulletSpeed;
-    }
-
-    public GameObject GetBulletPrefab() {
+    public override GameObject GetBulletPrefab()
+    {
         return bulletPrefab;
     }
 
+    public override void Fire(Vector2 pointingDirection, Vector2 bulletSpawn, float angle)
+    {
+        GameObject bullet = Instantiate(bulletPrefab, bulletSpawn, Quaternion.AngleAxis(angle - 45, Vector3.forward));
+        bullet.GetComponent<Rigidbody2D>().velocity = pointingDirection * bulletSpeed;
+    }
 }

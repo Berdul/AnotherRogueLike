@@ -40,6 +40,6 @@ public class GunBehavior : MonoBehaviour
     public void Fire()
     {
         Vector2 bulletSpawnPos = transform.GetChild(0).position;
-        bulletPrefab.GetComponent<IBullet>().Fire(pointingDirection, bulletSpawnPos, angle);
+        bulletPrefab.GetComponent<Bullet>().Fire(pointingDirection, bulletSpawnPos, angle);
     } 
 }
