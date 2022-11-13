@@ -13,7 +13,6 @@ public class PlayerBehavior : MonoBehaviour
     private Vector2 moveDir;
     private bool dashing = false;
 
-    private GunBehavior gunBehavior;
     private Animator animator;
 
     public PlayerActionInputs playerControls;
@@ -26,7 +25,6 @@ public class PlayerBehavior : MonoBehaviour
     }
 
     void OnEnable() {
-        gunBehavior = gameObject.transform.Find("Gun").GetComponent<GunBehavior>();
         animator = gameObject.GetComponent<Animator>();
 
         InitInputActions();

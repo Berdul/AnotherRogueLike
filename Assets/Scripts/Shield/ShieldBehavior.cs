@@ -7,14 +7,16 @@ public class ShieldBehavior : MonoBehaviour
     public float offset;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        Debug.Log("que se paso ?");
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         Vector2 pointingDirection = (mousePos - PlayerManager.instance.GetPlayerPosition()).normalized;
         float angle = Mathf.RoundToInt(Mathf.Atan2(pointingDirection.y, pointingDirection.x) * Mathf.Rad2Deg);
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.position = PlayerManager.instance.GetPlayerPosition() + pointingDirection * offset;
+        Debug.Log("Oldel paso : " + transform.position);
     }
 
     void OnDrawGizmosSelected()

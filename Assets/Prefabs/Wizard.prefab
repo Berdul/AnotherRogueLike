@@ -240,7 +240,7 @@ MonoBehaviour:
   attackState: {fileID: 1991524978923194375}
   fleeState: {fileID: 1063144265701866138}
   FLEE_DISTANCE: 4
-  ATTACK_DISTANCE: 8
+  ATTACK_DISTANCE: 15
 --- !u!1 &4886077334580055120
 GameObject:
   m_ObjectHideFlags: 0
@@ -581,6 +581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b56eed5750d37440aad640fa858a3934, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  circleCollider: {fileID: 5400506883339184447}
   attackCDState: {fileID: 6036102354609490942}
   idleState: {fileID: 35824577616866120}
   fireBall: {fileID: 632796772415845591, guid: cd37a09ec34e5475a825d172414402ff, type: 3}

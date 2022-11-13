@@ -6,7 +6,7 @@ public class WizardAI : MonoBehaviour
 {
     public State state;
 
-    void Update()
+    void FixedUpdate()
     {
         RunCurrentState();
     }
@@ -25,7 +25,6 @@ public class WizardAI : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("Bullet")) {
-            Debug.Log(collision.gameObject.tag);
             Destroy(gameObject);
             Destroy(collision.gameObject);
         }
